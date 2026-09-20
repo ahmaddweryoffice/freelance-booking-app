@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Freelance Consultation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Nunito", ui-sans-serif, system-ui, sans-serif;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 12% 18%, #fde047 0%, transparent 32%),
+        radial-gradient(circle at 88% 12%, #fb7185 0%, transparent 34%),
+        radial-gradient(circle at 82% 88%, #38bdf8 0%, transparent 36%),
+        radial-gradient(circle at 10% 86%, #a78bfa 0%, transparent 32%),
+        linear-gradient(135deg, #f97316 0%, #ec4899 38%, #8b5cf6 72%, #06b6d4 100%);
+      background-attachment: fixed;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(40px);
+      opacity: 0.55;
+      pointer-events: none;
+      animation: float 9s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 180px;
+      height: 180px;
+      background: #facc15;
+      top: -40px;
+      left: -50px;
+    }
+
+    .blob-2 {
+      width: 140px;
+      height: 140px;
+      background: #22d3ee;
+      bottom: -30px;
+      right: -20px;
+      animation-delay: -3s;
+    }
+
+    .blob-3 {
+      width: 90px;
+      height: 90px;
+      background: #f472b6;
+      top: 42%;
+      right: -28px;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-16px) scale(1.08); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      60% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .step-panel {
+      display: none;
+    }
+
+    .step-panel.active {
+      display: block;
+      animation: fadeInUp 0.45s ease-out both;
+    }
+
+    .bounce-in {
+      animation: bounceIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pop-btn {
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+    }
+
+    .pop-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    .pop-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .error-shake {
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="flex min-h-screen items-center justify-center p-4 sm:p-6">
+  <main class="relative w-full max-w-lg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <section class="relative overflow-hidden rounded-3xl border border-white/50 bg-white/85 p-6 shadow-2xl backdrop-blur-md sm:p-10">
+      <div class="mb-6 flex items-center justify-between">
+        <p class="text-sm font-extrabold tracking-wide text-fuchsia-600">Freelance Consult ✨</p>
+        <p id="step-indicator" class="rounded-full bg-gradient-to-r from-orange-400 to-pink-500 px-3 py-1 text-xs font-extrabold text-white shadow">Step 1 of 4</p>
+      </div>
+
+      <div class="mb-8 flex gap-2" aria-hidden="true">
+        <span class="progress-dot h-2 flex-1 rounded-full bg-gradient-to-r from-orange-400 to-pink-500"></span>
+        <span class="progress-dot h-2 flex-1 rounded-full bg-slate-200"></span>
+        <span class="progress-dot h-2 flex-1 rounded-full bg-slate-200"></span>
+        <span class="progress-dot h-2 flex-1 rounded-full bg-slate-200"></span>
+      </div>
+
+      <!-- Step 1 -->
+      <div id="step-1" class="step-panel active text-center">
+        <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-300 via-pink-400 to-violet-500 text-4xl shadow-lg bounce-in">🚀</div>
+        <h1 class="text-3xl font-black leading-tight text-slate-800 sm:text-4xl">Ready to bring your project to <span class="whitespace-nowrap">life? 🚀</span></h1>
+        <p class="mx-auto mt-4 max-w-md text-base font-semibold text-slate-600 sm:text-lg">Let's book a quick freelance consultation to discuss your ideas.</p>
+        <button type="button" data-next="2" class="pop-btn mt-8 w-full rounded-2xl bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 px-6 py-4 text-lg font-black text-white shadow-lg shadow-pink-400/40">
+          I'm Free, Let's Chat!
+        </button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step-2" class="step-panel">
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-300 to-indigo-500 text-3xl shadow-lg">📅</div>
+        <h2 class="text-center text-3xl font-black text-slate-800">When works best for <span class="whitespace-nowrap">you? 📅</span></h2>
+        <p class="mt-2 text-center font-semibold text-slate-500">Pick a date and time that feels good.</p>
+
+        <form id="datetime-form" class="mt-7 space-y-5" novalidate>
+          <label class="block">
+            <span class="mb-2 block text-sm font-extrabold text-slate-700">Date</span>
+            <input id="date-input" type="date" required class="w-full rounded-2xl border-2 border-fuchsia-200 bg-white px-4 py-3 text-base font-bold text-slate-700 outline-none ring-pink-300 transition focus:border-pink-400 focus:ring-4" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-sm font-extrabold text-slate-700">Time</span>
+            <input id="time-input" type="time" required class="w-full rounded-2xl border-2 border-sky-200 bg-white px-4 py-3 text-base font-bold text-slate-700 outline-none ring-sky-300 transition focus:border-sky-400 focus:ring-4" />
+          </label>
+          <p id="datetime-error" class="hidden text-center text-sm font-extrabold text-rose-500">Please pick a date (and time) first 🗓️</p>
+          <button type="submit" class="pop-btn w-full rounded-2xl bg-gradient-to-r from-sky-400 via-indigo-500 to-violet-500 px-6 py-4 text-lg font-black text-white shadow-lg shadow-indigo-400/40">
+            Next step ➡️
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step-3" class="step-panel">
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-300 to-emerald-500 text-3xl shadow-lg">✨</div>
+        <h2 class="text-center text-3xl font-black text-slate-800">Awesome! Just a few <span class="whitespace-nowrap">details. ✨</span></h2>
+        <p class="mt-2 text-center font-semibold text-slate-500">Tell me who you are and what you're dreaming up.</p>
+
+        <form id="details-form" class="mt-7 space-y-5" novalidate>
+          <label class="block">
+            <span class="mb-2 block text-sm font-extrabold text-slate-700">Your name</span>
+            <input id="name-input" type="text" required autocomplete="name" placeholder="Alex Rivera" class="w-full rounded-2xl border-2 border-violet-200 bg-white px-4 py-3 text-base font-bold text-slate-700 outline-none ring-violet-300 transition placeholder:font-semibold placeholder:text-slate-400 focus:border-violet-400 focus:ring-4" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-sm font-extrabold text-slate-700">What do you want to build?</span>
+            <textarea id="project-input" rows="4" required placeholder="A colorful booking site for my freelance work..." class="w-full resize-none rounded-2xl border-2 border-orange-200 bg-white px-4 py-3 text-base font-bold text-slate-700 outline-none ring-orange-300 transition placeholder:font-semibold placeholder:text-slate-400 focus:border-orange-400 focus:ring-4"></textarea>
+          </label>
+          <p id="details-error" class="hidden text-center text-sm font-extrabold text-rose-500">Name and project details please ✍️</p>
+          <button type="submit" class="pop-btn w-full rounded-2xl bg-gradient-to-r from-lime-400 via-emerald-500 to-teal-500 px-6 py-4 text-lg font-black text-white shadow-lg shadow-emerald-400/40">
+            Send Request 💌
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 4 -->
+      <div id="step-4" class="step-panel text-center">
+        <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-300 via-orange-400 to-pink-500 text-4xl shadow-lg bounce-in">🎉</div>
+        <h2 class="text-3xl font-black text-slate-800 sm:text-4xl"><span class="whitespace-nowrap">Woohoo! 🎉</span></h2>
+        <p class="mx-auto mt-4 max-w-md text-base font-semibold text-slate-600 sm:text-lg">Your email app should have opened with the details. Just hit send, and I'll confirm with you shortly!</p>
+        <button type="button" id="start-over" class="pop-btn mt-8 w-full rounded-2xl bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 px-6 py-4 text-lg font-black text-white shadow-lg shadow-orange-400/40">
+          Start Over
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const EMAIL_TO = "YOUR_EMAIL@EXAMPLE.COM";
+    const totalSteps = 4;
+    const panels = document.querySelectorAll(".step-panel");
+    const progressDots = document.querySelectorAll(".progress-dot");
+    const stepIndicator = document.getElementById("step-indicator");
+    const dateInput = document.getElementById("date-input");
+    const timeInput = document.getElementById("time-input");
+    const nameInput = document.getElementById("name-input");
+    const projectInput = document.getElementById("project-input");
+    const datetimeError = document.getElementById("datetime-error");
+    const detailsError = document.getElementById("details-error");
+
+    dateInput.min = new Date().toISOString().split("T")[0];
+
+    function showStep(step) {
+      panels.forEach((panel) => panel.classList.remove("active"));
+      document.getElementById("step-" + step).classList.add("active");
+      stepIndicator.textContent = "Step " + step + " of " + totalSteps;
+
+      progressDots.forEach((dot, index) => {
+        if (index < step) {
+          dot.className = "progress-dot h-2 flex-1 rounded-full bg-gradient-to-r from-orange-400 to-pink-500";
+        } else {
+          dot.className = "progress-dot h-2 flex-1 rounded-full bg-slate-200";
+        }
+      });
+    }
+
+    function flashError(element) {
+      element.classList.remove("hidden");
+      element.classList.remove("error-shake");
+      void element.offsetWidth;
+      element.classList.add("error-shake");
+    }
+
+    document.querySelector("[data-next='2']").addEventListener("click", () => showStep(2));
+
+    document.getElementById("datetime-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!dateInput.value) {
+        flashError(datetimeError);
+        dateInput.focus();
+        return;
+      }
+      datetimeError.classList.add("hidden");
+      showStep(3);
+    });
+
+    document.getElementById("details-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = nameInput.value.trim();
+      const project = projectInput.value.trim();
+
+      if (!name || !project) {
+        flashError(detailsError);
+        (name ? projectInput : nameInput).focus();
+        return;
+      }
+
+      detailsError.classList.add("hidden");
+
+      const dateLabel = dateInput.value
+        ? new Date(dateInput.value + "T00:00:00").toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        : "Not specified";
+      const timeLabel = timeInput.value || "Not specified";
+
+      const subject = "Freelance Consultation Request - " + name;
+      const body = [
+        "Hi!",
+        "",
+        "I'd love to book a freelance consultation.",
+        "",
+        "Name: " + name,
+        "Preferred date: " + dateLabel,
+        "Preferred time: " + timeLabel,
+        "",
+        "What I want to build:",
+        project,
+        "",
+        "Thanks!",
+      ].join("\r\n");
+
+      const mailtoLink =
+        "mailto:" +
+        EMAIL_TO +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
+
+      window.location.href = mailtoLink;
+      showStep(4);
+    });
+
+    document.getElementById("start-over").addEventListener("click", () => {
+      dateInput.value = "";
+      timeInput.value = "";
+      nameInput.value = "";
+      projectInput.value = "";
+      datetimeError.classList.add("hidden");
+      detailsError.classList.add("hidden");
+      showStep(1);
+    });
+  </script>
+</body>
+</html>
